@@ -1,20 +1,32 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BlogList from "./pages/Bloglist";
 import BlogPost from "./pages/Blogpost";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
+import Navbar from "./components/Navbar";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Blog list as homepage */}
-        <Route path="/" element={<BlogList />} />
-
-        {/* Blog list page */}
-        <Route path="/blog" element={<BlogList />} />
-
-        {/* Dynamic blog post page */}
-        <Route path="/blog/:slug" element={<BlogPost />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<BlogList />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
