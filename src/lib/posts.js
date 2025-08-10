@@ -1,3 +1,5 @@
+//An array of mock blog post objects used as sample data for the blog application
+
 export const mockBlogData = [
     {
         id: 1,

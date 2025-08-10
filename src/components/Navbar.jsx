@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+
+//Navbar component displays navigation links 
 export default function Navbar() {
+    //Destructure isAuthenticated and logout function from AuthContext
     const { isAuthenticated, logout } = useContext(AuthContext);
 
     return (
